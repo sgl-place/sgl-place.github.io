@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Software</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<div id="main">
+
+<h1>Software</h1>
+
+<p>Click on a table header to sort by that property.</p>
+
+<table id="gametable" class="display">
+	<tr>
+		<th onclick="sortTable(0)">Title</th>
+    <th onclick="sortTable(1)">Source</th>
+		<th onclick="sortTable(2)">Last Updated</th>
+		<th onclick="sortTable(3)">Description</th>
+		<th onclick="sortTable(4)">Download</th>
+	</tr>
+<tr>
+  <td>AdvanceMap</td>
+  <td><a href="http://ampage.no-ip.info/">Official Site</a></td>
+  <td>3.19.11</td>
+  <td>Map editor for the GBA Pokemon games.</td>
+  <td><a href="">1.95</a> <a href="software/advancemap/history.html">History</a></td>
+</tr>
+<tr>
+  <td>GBA.zip</td>
+  <td><a href="https://www.dropbox.com/sh/opb8xcv4zrc8tgj/AABxbnh-09c6mfUPVAxdFlJUa/Hacking%20Tools/PC/GBA?dl=0">Community Dropbox</a> (Retrieved 5.7.17)</td>
+  <td>9.7.14 (N/A)</td>
+  <td>Various other tools for editing the GBA Pokemon games. NOT yet tested for malware, use at your own risk.</td>
+  <td><a href="software/GBA.zip">Local</a></td>
+</tr>
+<tr>
+  <td>missingno.exe</td>
+  <td><a href="https://sites.google.com/site/thezzazzglitch/home">Google Site</a></td>
+  <td>4.1.16 (N/A)</td>
+  <td>TheZZAZZGlitch's 2016 April Fool's event.</td>
+  <td><a href="software/MissingnoEXETotallyNotAVirusTrustMeM9.zip">Local</a></td>
+</tr>
+<tr>
+  <td>missingno.sav</td>
+  <td><a href="https://sites.google.com/site/thezzazzglitch/home">Google Site</a></td>
+  <td>4.1.17 (N/A)</td>
+  <td>TheZZAZZGlitch's 2017 April Fool's event. I didn't imagine he'd try and outdo himself after last year's event, but he did and it's something special.</td>
+  <td><a href="software/missingno.sav">Local</a></td>
+</tr>
+
+</table>
+
+</div>
+
+<script>
+function sortTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("gametable");
+  switching = true;
+  //Set the sorting direction to ascending:
+  dir = "asc"; 
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.getElementsByTagName("TR");
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      /*check if the two rows should switch place,
+      based on the direction, asc or desc:*/
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch= true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch= true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      //Each time a switch is done, increase this count by 1:
+      switchcount ++;      
+    } else {
+      /*If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again.*/
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+</script>
+
+</body>
+
+</html>
+
+</body>
+</html>
